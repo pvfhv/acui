@@ -15,7 +15,16 @@
 
 			this.$element.on('touchstart.toLine.founder mousedown.toLine.founder', function(e) {
 				var ev = e.type == 'touchstart' ? e.originalEvent.touches[0] : e,
-					that = this;
+					that = this,
+					startX=ev.pageX,
+					startY=ev.pageY;
+
+				var $line=$('<div />', {
+					"class": "ac-line"
+				}).appendTo(document.body).css({
+					left: startX + 'px',
+					top: startY + 'px'
+				});
 
 				if (options.before && $.isFunction(options.before)) {
 					options.before.call(that, ev);
@@ -23,6 +32,18 @@
 
 				$(document).on('touchmove.toLine.founder mousemove.toLine.founder', function(e) {
 					var ev = e.type == 'touchmove' ? e.originalEvent.touches[0] : e;
+
+					var l = ev.pageX,
+						t = ev.pageY,
+						disX = l - startX,
+						disY = t - startY,
+						x = Math.abs(disX),
+						y = Math.abs(disY);
+
+					var dis = Math.round(Math.sqrt(x * x + y * y)),
+						deg = Math.round(180 * Math.atan2(disY, disX) / Math.PI);
+
+					$line.width(dis + 'px').css('transform', 'rotate(' + deg + 'deg)');
 
 					if (options.process && $.isFunction(options.process)) {
 						options.process.call(that, ev);
@@ -40,8 +61,8 @@
 
 					$(document).off('.toLine.founder');
 				});
-			
-			    e.preventDefault();
+
+				e.preventDefault();
 			});
 		}
 	};
@@ -67,7 +88,7 @@
 	};
 
 	$.fn.toLine.defaults = {
-		before:$.noop,
+		before: $.noop,
 		process: $.noop,
 		end: $.noop
 	};

@@ -71,3 +71,16 @@ body .ac-fixed {
 	background-color: #FFFFFF;
 	border-color: #999;
 }
+
+/*页面画线组件*/
+.ac-line {
+	width: 4px;
+	height: 4px;
+	background: #FF0000;
+	border-radius: 2px;
+	position: absolute;
+	-webkit-transform-origin: 0 50%;
+	-moz-transform-origin: 0 50%;
+	-ms-transform-origin: 0 50%;
+	transform-origin: 0 50%;
+}
