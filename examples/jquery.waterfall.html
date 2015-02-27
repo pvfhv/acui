@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			ul {
+				list-style: none;
+			}
+			li {
+				box-sizing: border-box;
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+				float: left;
+				margin: 5px;
+			}
+			#div1 {
+				width: 630px;
+				margin: 0 auto;
+			}
+			.waterfallloading {
+				width: 32px;
+				height: 32px;
+				background: url('loading.gif') no-repeat;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1">
+			<ul>
+				<li>
+					<img src="../1.png" />
+				</li>
+				<li>
+					<img src="../1.png" />
+				</li>
+				<li>
+					<img src="../1.png" />
+				</li>
+				<li>
+					<img src="../1.png" />
+				</li>
+				<li>
+					<img src="../1.png" />
+				</li>
+				<li>
+					<img src="../1.png" />
+				</li>
+			</ul>
+		</div>
+		<script src="../js/jquery-1.11.1.min.js"></script>
+		<script src="../js/jquery.waterfall.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			 //autoLoad:false则不会主动加载一次数据
+			$('#div1 > ul').waterfall({
+						url: 'waterfall.ashx',
+						pageIndex: 0,
+						pageSize: 20,
+						autoLoad: true,
+						callback: function(json, $c) {
+							//你遍历每次滚动条滚动请求回来的json即可
+							//$c，即为发请求的确切jquery对象（比如：$('.abc'),在页面中会有多个，这里的$c是确切到底是第几个class="abc"的元素要请求内容）
+						});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>抛物线测试</title>
+		<style type="text/css">
+			#div1 {
+				width: 220px;
+				height: 220px;
+				background: url('pao.jpg');
+				background-size: cover;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				cursor: pointer;
+				z-index: 3;
+			}
+			#div2 {
+				width: 220px;
+				height: 220px;
+				background: url('niu.jpg');
+				background-size: cover;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				z-index: 3;
+			}
+			#div3 {
+				width: 50px;
+				height: 50px;
+				background-image: -webkit-radial-gradient(circle, #000, #fff, #000);
+				border-radius: 30px;
+				position: absolute;
+				left: 174px;
+				bottom: 140px;
+				z-index: 2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div1"></div>
+		<script src="../js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.paracurve.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('#div1').click(function() {
+				$('#div3').paracurve({
+					end: [$('#div2').position().left + 50, $('#div2').position().top + 50],
+					step: 10,
+					movecb: function() {
+						$('#div3').clone().appendTo(document.body);
+					},
+					moveendcb: function() {
+						//牛动作
+						$('#div2').animate({
+							width: '+=100',
+							height: '+=100'
+						}).animate({
+							width: '-=100',
+							height: '-=100'
+						}).animate({
+							opacity: 0
+						}, 'fast').animate({
+							opacity: 1
+						}, 'fast').animate({
+							opacity: 0
+						}, 'fast').animate({
+							opacity: 1
+						}, 'fast');
+						//子弹复位
+						$(this).css({
+							left: '174px',
+							top: $('#div1').position().top + 30 + 'px'
+						});
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

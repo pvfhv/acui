@@ -24,7 +24,17 @@
 		<script src="../js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/jquery.toLine.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$('#div1').toLine();
+			$('#div1').toLine({
+				before:function(){
+					console.log('开始画直线啦~~');
+				},
+				process:function(){
+					console.log('画直线ing~~');
+				},
+				end:function(){
+					console.log('画完直线啦~~');
+				}
+			});
 		</script>
 	</body>
 
