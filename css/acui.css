@@ -1,0 +1,73 @@
+/*遮罩效果样式*/
+.ac-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000000;
+}
+
+body .ac-fixed {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.ac-mask-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.3;
+    -moz-opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.ac-mask-msg {
+    font-family: "microsoft yahei", arial;
+    font-size: 12px;
+    width: auto;
+    color: #222;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    cursor: wait;
+}
+
+.ac-mask-loading {
+    padding: 10px 8px 10px 30px;
+    background: #fff url(../img/loading.gif) no-repeat scroll 5px 50%;
+    border: 2px solid #517fad;
+}
+
+/*分页组件*/
+.ac-pagination {
+	font-size: 14px;
+}
+.ac-pagination a {
+	text-decoration: none;
+	color: #15b;
+	background-color: #FFFFFF;
+	border: #aae 1px solid;
+}
+.ac-pagination a,.ac-pagination span {
+	float: left;
+	display: block;
+	padding: 3px 5px;
+	margin:0 5px 5px 0;
+}
+.ac-pagination .current {
+	color: #fff;
+	background: #26b;
+	border: #aae 1px solid
+}
+.ac-pagination .prev,.ac-pagination .next {
+	color: #999;
+	background-color: #FFFFFF;
+	border-color: #999;
+}
