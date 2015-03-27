@@ -13,11 +13,11 @@
 		init: function() {
 			var options = this.options;
 
-			this.$element.on('touchstart.toLine.founder mousedown.toLine.founder', function(e) {
+			this.$element.on('touchstart.toLine.founder', function(e) {
 				var ev = e.type == 'touchstart' ? e.originalEvent.touches[0] : e,
 					that = this,
-					startX=ev.pageX,
-					startY=ev.pageY;
+					startX=Math.round(ev.pageX),
+					startY=Math.round(ev.pageY);
 
 				var $line=$('<div />', {
 					"class": "ac-line"
@@ -30,7 +30,7 @@
 					options.before.call(that, ev);
 				}
 
-				$(document).on('touchmove.toLine.founder mousemove.toLine.founder', function(e) {
+				$(document).on('touchmove.toLine.founder', function(e) {
 					var ev = e.type == 'touchmove' ? e.originalEvent.touches[0] : e;
 
 					var l = ev.pageX,
@@ -43,7 +43,7 @@
 					var dis = Math.round(Math.sqrt(x * x + y * y)),
 						deg = Math.round(180 * Math.atan2(disY, disX) / Math.PI);
 
-					$line.width(dis + 'px').css('transform', 'rotate(' + deg + 'deg)');
+					$line.width(dis).css('transform', 'rotate(' + deg + 'deg)');
 
 					if (options.process && $.isFunction(options.process)) {
 						options.process.call(that, ev);
@@ -52,7 +52,7 @@
 					e.preventDefault();
 				});
 
-				$(document).on('touchend.toLine.founder mouseup.toLine.founder', function(e) {
+				$(document).on('touchend.toLine.founder', function(e) {
 					var ev = e.type == 'touchend' ? e.originalEvent.changedTouches[0] : e;
 
 					if (options.end && $.isFunction(options.end)) {

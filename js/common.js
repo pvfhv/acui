@@ -76,3 +76,36 @@ function getNnumFromArr(arr, aOther, n) {
 
 	return oRes;
 }
+
+/*
+ * 从指定数组中查找离给定元素最近的元素
+ * $cur：指定的元素
+ * arr:$cur与数组中的元素距离进行比较，找到最近一个
+ */
+function getNearEle($cur,arr){
+	var distance=Number.MAX_VALUE,
+		$res=null;
+	
+	for(var i=0,l=arr.length;i<l;i++){
+		var $this=arr[i],
+			left1=$this.offset().left,
+			top1=$this.offset().top,
+			left2=$cur.offset().left,
+			top2=$cur.offset().top,
+			disX=left1-left2,
+			disY=top1-top2,
+		    realDistance=Math.sqrt(disX*disX+disY*disY);
+		
+		if(realDistance<distance){
+			distance=realDistance;
+			$res=$this;
+		}
+	}
+	
+	return $res;
+}
+
+//禁止默认事件
+$(document).on('touchstart',function(e){
+	e.preventDefault();
+});
