@@ -14,6 +14,10 @@
 			var options = this.options;
 
 			this.$element.on('touchstart.drag.founder mousedown.drag.founder', function(e) {
+				if($(this).is(':animated')){
+					$(this).stop(true,true);
+				}
+				
 				var ev = e.type == 'touchstart' ? e.originalEvent.touches[0] : e,
 					startPos = $(this).position(),
 					disX = ev.pageX - startPos.left,
