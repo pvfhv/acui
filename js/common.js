@@ -2,6 +2,7 @@
  * 碰撞检测
  * $dragObj被拖动物体
  * $target要被碰撞的物体
+ * return 被碰撞物体组成的数组
  */
 function isCollide($dragObj, $target) {
 	var aRes = [];
