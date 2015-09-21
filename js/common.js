@@ -106,6 +106,35 @@ function getNearEle($cur,arr){
 	return $res;
 }
 
+/*
+ * 日期转换成指定格式的字符串
+ * oDate:日期对象
+ * format:指定格式的字符串"yyyy-MM-dd hh:mm:ss"
+ */
+function convertDate2FormatStr(oDate,format){
+	var o = {
+		"M+" : oDate.getMonth()+1, //month
+		"d+" : oDate.getDate(), //day
+		"h+" : oDate.getHours(), //hour
+		"m+" : oDate.getMinutes(), //minute
+		"s+" : oDate.getSeconds(), //second
+		"q+" : Math.floor((oDate.getMonth()+3)/3), //quarter
+		"S" : oDate.getMilliseconds() //millisecond
+	}
+
+	if(/(y+)/.test(format)) {
+		format = format.replace(RegExp.$1, (oDate.getFullYear()+"").substr(4 - RegExp.$1.length));
+	}
+
+	for(var k in o) {
+		if(new RegExp("("+ k +")").test(format)) {
+			format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+		}
+	}
+
+	return format;
+}
+
 //禁止默认事件
 $(document).on('touchstart',function(e){
 	e.preventDefault();
