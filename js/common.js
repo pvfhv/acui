@@ -135,6 +135,16 @@ function convertDate2FormatStr(oDate,format){
 	return format;
 }
 
+//checkbox的第三种状态
+$('#myapp-selected-all').prop({'indeterminate': false, 'checked': false});
+
+//input光标停留在文本末尾
+/* var l=$input.val().length;
+$input.focus().prop({
+	selectionStart:l,
+	selectionEnd:l
+}); */
+
 //禁止默认事件
 $(document).on('touchstart',function(e){
 	e.preventDefault();
